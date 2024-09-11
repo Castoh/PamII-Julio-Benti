@@ -6,6 +6,70 @@ import ImageViewer from './components/ImageViewer';
 
 import * as ImagePicker from 'expo-image-picker';
 
+import { useState } from 'react';
+// ...rest of the import statements remain unchanged
+
+export default function App() {
+  const [selectedImage, setSelectedImage] = useState(null);
+}
+
+
+export default function App() {
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    })
+  
+
+    if (!result.canceled) {
+      setSelectedImage(result.assets[0].uri);
+    } else {
+      alert('You did not select any image.');
+    }
+  };
+
+    if (!result.canceled) {
+      console.log(result);
+    } else {
+      alert('You did not select any image.');
+    }
+};
+
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <ImageViewer placeholderImageSource={PlaceholderImage} /> <ImageViewer
+          placeholderImageSource={PlaceholderImage}
+          selectedImage={selectedImage}
+        />
+      </View>
+      <View style={styles.footerContainer}>
+        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
+        <Button label="Use this photo" />
+      </View>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
+
+{
+  "assets"; [
+    {
+      "assetId": null,
+      "base64": null,
+      "duration": null,
+      "exif": null,
+      "height": 4800,
+      "rotation": null,
+      "type": "image",
+      "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%username%252Fsticker-smash-47-beta/ImagePicker/77c4e56f-4ccc-4c83-8634-fc376597b6fb.jpeg",
+      "width": 3200
+    }
+  ],
+  "canceled"; false
+}
 
 
 const PlaceholderImage = require('./assets/images/background-image.png');
@@ -31,7 +95,7 @@ export default function App() {
       <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
       <View style={styles.footerContainer}>
-      <Button theme="primary" label="Choose a photo" />
+        <Button theme="primary" label="Choose a photo" />
         <Button label="Use this photo" />
       </View>
       <StatusBar style="auto" />
