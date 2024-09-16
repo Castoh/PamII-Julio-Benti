@@ -13,6 +13,22 @@ export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
 }
 
+export default function App() {
+  const [showAppOptions, setShowAppOptions] = useState(false);
+  // ...rest of the code remains same
+}
+
+const pickImageAsync = async () => {
+  // ...rest of the code remains same
+
+  if (!result.canceled) {
+    setSelectedImage(result.assets[0].uri);
+    setShowAppOptions(true);
+
+  } else {
+    // ...rest of the code remains same
+  }
+};
 
 export default function App() {
   const pickImageAsync = async () => {
@@ -39,15 +55,17 @@ export default function App() {
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} /> <ImageViewer
-          placeholderImageSource={PlaceholderImage}
-          selectedImage={selectedImage}
-        />
-      </View>
+       {showAppOptions ? (
+        <View />
+      ) : (
+        <View style={styles.footerContainer}>
+          <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
+          <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
+        </View>
+      )}
       <View style={styles.footerContainer}>
         <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-        <Button label="Use this photo" />
+        <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
       </View>
       <StatusBar style="auto" />
     </View>
